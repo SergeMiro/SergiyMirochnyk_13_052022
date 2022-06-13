@@ -1,8 +1,18 @@
 import axios from 'axios'
-import { baseUrl } from './data'
-import { selectUser } from './selectors'
-import { userAuthorized, userFetching, userRejected, userResolved } from '../features/user'
+import { baseUrl } from './Data'
+import { selectUser } from './Selectors'
+import { userAuthorized, userFetching, userRejected, userResolved } from '../reducer/User'
 
+/**
+ * @async
+ * @function getOrModifyUser
+ * @param { Object } store
+ * @param { String } method 
+ * @param { String } path 
+ * @param { Object } body // first name and last name from the form
+ * @param { String } token 
+ * @returns action in reducer to change store (post) or database (put)
+ */
 export async function getOrModifyUser(store, method, path, body, token) {
   const status = selectUser(store.getState()).status
   const headers = {

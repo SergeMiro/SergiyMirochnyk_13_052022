@@ -5,25 +5,25 @@ html {
 	text-align: center;
 	color: #2c3e50;
  }
-
+ 
  body {
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
  }
-
+ 
  .main {
 	flex: 1;
  }
-
+ 
  .bg-dark {
 	background-color: #12002b;
 	padding-top: 3rem;
-	padding-bottom:3rem;
+	padding-bottom: 3rem;
 	min-height: 70vh;
  }
-
+ 
  .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -37,7 +37,7 @@ html {
 	width: 1px !important;
 	white-space: nowrap !important; /* 3 */
  }
-
+ 
  .main-nav {
 	display: flex;
 	justify-content: space-between;
@@ -45,48 +45,48 @@ html {
 	padding: 5px 20px;
 	max-height: 6vh;
  }
-
+ 
  .main-nav a {
 	font-weight: bold;
 	color: #2c3e50;
  }
-
+ 
  .main-nav a.router-link-exact-active {
 	color: #42b983;
  }
-
+ 
  .main-nav-item {
 	text-decoration: none;
 	margin-right: 0.5rem;
  }
-
+ 
  .main-nav-item:hover {
 	text-decoration: underline;
  }
-
+ 
  .fa-user-circle {
 	margin-right: 5px;
  }
-
+ 
  .main-nav-logo {
 	display: flex;
 	align-items: center;
  }
-
+ 
  .main-nav-logo-image {
 	max-width: 100%;
 	width: 200px;
  }
-
+ 
  .hero {
-	background-image: url('../../assets/Images/bank-tree.jpeg');
+	background-image: url("./assets/Images/bank-tree.jpeg");
 	background-position: 0 -50px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 300px;
 	position: relative;
  }
-
+ 
  .hero-content {
 	position: relative;
 	top: 2rem;
@@ -96,24 +96,24 @@ html {
 	text-align: left;
 	margin: 0 auto;
  }
-
+ 
  .hero-content .subtitle {
 	font-weight: bold;
 	font-size: 1rem;
 	margin: 0;
  }
-
+ 
  .hero-content .text {
 	margin-bottom: 0;
 	font-size: 0.9rem;
  }
-
+ 
  @media (min-width: 920px) {
 	.hero {
 	  height: 400px;
 	  background-position: 0% 33%;
 	}
-
+ 
 	.hero-content {
 	  position: absolute;
 	  top: 50px;
@@ -121,46 +121,46 @@ html {
 	  width: 300px;
 	  margin: 2rem;
 	}
-
+ 
 	.hero-content .subtitle {
 	  font-size: 1.5rem;
 	}
-
+ 
 	.hero-content .text {
 	  font-size: 1.2rem;
 	}
  }
-
+ 
  .features {
 	display: flex;
 	flex-direction: column;
  }
-
+ 
  @media (min-width: 920px) {
 	.features {
 	  flex-direction: row;
 	}
  }
-
+ 
  .feature-icon {
 	width: 100px;
 	border: 10px solid #00bc77;
 	border-radius: 50%;
 	padding: 1rem;
  }
-
+ 
  .feature-item {
 	flex: 1;
 	padding: 2.5rem;
  }
-
+ 
  .feature-item-title {
 	color: #222;
 	font-size: 1.25rem;
 	font-weight: bold;
 	margin-bottom: 0.5rem;
  }
-
+ 
  .sign-in-button {
 	display: block;
 	width: 100%;
@@ -172,7 +172,7 @@ html {
 	background-color: #00bc77;
 	color: #fff;
  }
-
+ 
  .sign-in-content {
 	box-sizing: border-box;
 	background-color: white;
@@ -180,35 +180,54 @@ html {
 	margin: 0 auto;
 	padding: 2rem;
  }
-
+ 
  .sign-in-icon {
 	font-size: 5rem;
  }
-
+ 
  .input-remember {
 	display: flex;
  }
-
+ 
  .input-remember label {
 	margin-left: 0.25rem;
  }
-
+ 
  .input-wrapper {
 	display: flex;
 	flex-direction: column;
 	text-align: left;
 	margin-bottom: 1rem;
  }
-
+ 
  .input-wrapper label {
 	font-weight: bold;
  }
-
+ 
  .input-wrapper input {
 	padding: 5px;
 	font-size: 1.2rem;
  }
-
+ 
+ .form-changing-wrapper {
+	display: flex;
+	justify-content: center;
+	width: 500px;
+	margin: auto;
+ }
+ 
+ .input-changing-wrapper {
+	display: flex;
+	text-align: left;
+	margin-left: 5px;
+	margin-right: 5px;
+ }
+ 
+ .input-changing-wrapper input {
+	padding: 5px;
+	font-size: 1.4rem;
+ }
+ 
  .footer {
 	display: flex;
 	justify-content: center;
@@ -216,12 +235,12 @@ html {
 	padding: 2rem 0 1.5rem;
 	max-height: 6vh;
  }
-
+ 
  .footer-text {
 	margin: 0;
 	padding: 0;
  }
-
+ 
  .account {
 	display: flex;
 	justify-content: space-between;
@@ -236,29 +255,29 @@ html {
 	text-align: left;
 	margin-bottom: 2rem;
  }
-
+ 
  .account-amount {
 	margin: 0;
 	font-size: 2.5rem;
 	font-weight: bold;
  }
-
+ 
  .account-amount-description {
 	margin: 0;
  }
-
+ 
  .account-title {
 	margin: 0;
 	padding: 0;
 	font-size: 1rem;
 	font-weight: normal;
  }
-
+ 
  .account-content-wrapper {
 	width: 100%;
 	flex: 1;
  }
-
+ 
  .edit-button {
 	border-color: #00bc77;
 	background-color: #00bc77;
@@ -266,12 +285,23 @@ html {
 	font-weight: bold;
 	padding: 10px;
  }
-
+ 
+ .modify-button {
+	border-color: #00bc77;
+	background-color: #00bc77;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+	width: 100px;
+	margin-left: 5px;
+	margin-right: 5px;
+ }
+ 
  .header {
 	color: #fff;
 	margin-bottom: 2rem;
  }
-
+ 
  .transaction-button {
 	display: block;
 	width: 100%;
@@ -283,16 +313,16 @@ html {
 	background-color: #00bc77;
 	color: #fff;
  }
-
+ 
  @media (min-width: 720px) {
 	.account {
 	  flex-direction: row;
 	}
-
+ 
 	.account-content-wrapper.cta {
 	  flex: 0;
 	}
-
+ 
 	.transaction-button {
 	  width: 200px;
 	}

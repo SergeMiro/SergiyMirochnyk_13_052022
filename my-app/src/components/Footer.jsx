@@ -1,6 +1,10 @@
-import '../utils/Style/main.css'
+import '../index.css'
 
-
+/**
+ * Render the Footer of the application
+ * @function Footer
+ * @returns { ReactElement }
+ */
 function Footer() {
   return (
     <footer className="footer">

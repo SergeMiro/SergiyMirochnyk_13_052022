@@ -1,92 +1,192 @@
-import '../utils/Style/main.css'
-import { useState } from 'react'
-import { useSelector, useStore } from 'react-redux'
-import { selectUser } from '../utils/selectors'
-import {getOrModifyUser} from '../utils/callMethod'
-import { useHistory } from 'react-router-dom'
+//import css
+import "../index.css";
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { useSelector, useStore } from "react-redux";
+import { selectUser } from "../utils/Selectors";
+import { getOrModifyUser } from "../utils/CallMethod";
+import { Loader } from "../utils/Loader";
 
+/**
+ * Render the Profile page of the application
+ * @function Profile
+ * @returns { ReactElement }
+ */
 export default function Profile() {
-  const userInfos = useSelector(selectUser)
+  const userInfos = useSelector(selectUser);
+  const firstName = userInfos.data?.firstName;
+  const lastName = userInfos.data?.lastName;
 
-  const firstNameStore = userInfos.data?.firstName
-  const lastNameStore = userInfos.data?.lastName
-  const emailStore = userInfos.data?.email
+  /**
+   * displays form to modify informations
+   */
+  const [editName, setEditName] = useState(false);
 
-  const store = useStore()
+  const store = useStore();
 
+  /**
+   * State to view inputs
+   */
+  const [firstNameState, setFirstNameState] = useState("");
+  const [lastNameState, setLastNameState] = useState("");
 
-  const [firstName, setFirstName] = useState(firstNameStore)
-  const [lastName, setLastName] = useState(lastNameStore)
-
-  const [password, setPassword] = useState('')
-
-  const handleChange = ((e) => {
-    const target = e.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = e.target.name
-    switch (name) {
-      case 'Password':
-        setPassword(value)
-        break
-      case 'FirstName':
-        setFirstName(value)
-        break
-      case 'LastName':
-        setLastName(value)
-        break
-      default:
+  /**
+   * Change the state
+   * @function handleChange
+   * @param { Object } e event
+   * @param { String } value firstName or lastName from form
+   */
+  const handleChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = e.target.name;
+    if (name === "FirstName") {
+      setFirstNameState(value);
     }
-  })
+    if (name === "LastName") {
+      setLastNameState(value);
+    }
+  };
 
-  const history = useHistory()
+  /**
+   * Default appearance of the state before changing
+   * and open or close form (toggle)
+   * @function handleEdit
+   * @param { String } firstName from store
+   * @param { String } lastName from store
+   */
+  const handleEdit = () => {
+    setFirstNameState(firstName);
+    setLastNameState(lastName);
+    setEditName(!editName);
+  };
 
-  function createOrModify(path, location) {
-    const method = 'put'
+  /**
+   * Modifies the user's informations entered in the database
+   * @function modify
+   * @param { Object } store with status 'resolved'
+   * @param { String } firstName from form
+   * @param { String } lastName from form
+   * @returns { Object } store with updated user's informations and status 'resolved'
+   */
+  const modify = () => {
+    const method = "put";
+    const path = "/profile";
     const body = {
-      email: emailStore,
-      password: password ==='' ? null : password,
-      firstName:firstName,
-      lastName:lastName
-    }
-    console.log(body)
-    const token = userInfos.auth?.token
-    getOrModifyUser(store, method, path, body, token)
-    history.push(location)
-}
+      firstName: firstNameState,
+      lastName: lastNameState,
+    };
+    const token = userInfos.auth?.token;
+    getOrModifyUser(store, method, path, body, token);
+    handleEdit();
+  };
+
+  /**
+   * Needs store.status to change appearance
+   */
+  const status = userInfos.status;
+
+  /**
+   * displays the loader
+   */
+  if (
+    status === "pending" ||
+    status === "updating" ||
+    status === "authorized"
+  ) {
+    return (
+      <main className="main bg-dark">
+        <Loader />
+      </main>
+    );
+  }
+
+  /**
+   * push to login page
+   */
+  if (status === "rejected") {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <main className="main bg-dark">
-      <section className="sign-in-content">
-        <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Profile</h1>
-        <form>
-          <div className="input-wrapper">
-            <label htmlFor="firstname">firstname</label>
-            <input type="text" id="firstname" name='FirstName' value={firstName} onChange={handleChange}/>
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="lastname">lastname</label>
-            <input type="text" id="lastname" name='LastName' value={lastName} onChange={handleChange}/>
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="email">email</label>
-            <input type="text" id="email" name='Email' value={emailStore} onChange={handleChange}/>
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" name='Password' value={password} onChange={handleChange}/>
-          </div>
-          {(userInfos.data.id) ? (
-            <button className="modify-button" onClick={() => createOrModify('/profile', '/user')}>
-              Modify
-            </button>
-          ) : (
-            <button className="sign-in-button" onClick={() => createOrModify('/signup', '/login')}>
-              Create
-            </button>
-          )}
-        </form>
+      {editName === true ? (
+        <div className="header">
+          <h1>
+            Welcome back
+            <br />
+            <form>
+              <div className="form-changing-wrapper">
+                <div className="input-changing-wrapper">
+                  <input
+                    type="text"
+                    id="firstname"
+                    name="FirstName"
+                    value={firstNameState}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="input-changing-wrapper">
+                  <input
+                    type="text"
+                    id="lastname"
+                    name="LastName"
+                    value={lastNameState}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </form>
+          </h1>
+          <button className="modify-button" onClick={modify}>
+            Save
+          </button>
+          <button className="modify-button" onClick={handleEdit}>
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <div className="header">
+          <h1>
+            Welcome back
+            <br /> {firstName} {lastName} !
+          </h1>
+          <button className="edit-button" onClick={handleEdit}>
+            Edit Name
+          </button>
+        </div>
+      )}
+      <h2 className="sr-only">Accounts</h2>
+      <section className="account">
+        <div className="account-content-wrapper">
+          <h3 className="account-title">Argent Bank Checking (x8349)</h3>
+          <p className="account-amount">$2,082.79</p>
+          <p className="account-amount-description">Available Balance</p>
+        </div>
+        <div className="account-content-wrapper cta">
+          <button className="transaction-button">View transactions</button>
+        </div>
+      </section>
+      <section className="account">
+        <div className="account-content-wrapper">
+          <h3 className="account-title">Argent Bank Savings (x6712)</h3>
+          <p className="account-amount">$10,928.42</p>
+          <p className="account-amount-description">Available Balance</p>
+        </div>
+        <div className="account-content-wrapper cta">
+          <button className="transaction-button">View transactions</button>
+        </div>
+      </section>
+      <section className="account">
+        <div className="account-content-wrapper">
+          <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
+          <p className="account-amount">$184.30</p>
+          <p className="account-amount-description">Current Balance</p>
+        </div>
+        <div className="account-content-wrapper cta">
+          <button className="transaction-button">View transactions</button>
+        </div>
       </section>
     </main>
-  )
+  );
 }
