@@ -149,7 +149,7 @@ export default function Profile() {
         <div className="header">
           <h1>
             Welcome back
-            <br /> {firstName} {lastName} !
+            <br /> <p className="name-generated"> {firstName} {lastName} ! </p>
           </h1>
           <button className="edit-button" onClick={handleEdit}>
             Edit Name
