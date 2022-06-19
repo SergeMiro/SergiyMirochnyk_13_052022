@@ -1,4 +1,4 @@
-# Project #10 - Argent Bank API
+Argent Bank API (Back-end part)
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
@@ -23,20 +23,21 @@ mongo --version
 
 ### Instructions
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+1. Install MongoDB Community on your PC from here: https://www.mongodb.com/try/download/community
+2. Fork this repo
+3. Clone the repo to your computer
+4. Open a terminal window in the cloned project
+5. Run the following commands:
 
 ```bash
 # Install dependencies
 npm install
 
-# Start local dev server
+# Start local dev server (from the first window of terminal)
 npm run dev:server
 
-# Populate database with two users
-npm run populate-db
+# Populate database with two users (from the second window of terminal)
+npm run populate-db 
 ```
 
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
