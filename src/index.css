@@ -176,6 +176,10 @@ html {
 	border-radius: 5px;
  }
  
+ .sign-in-button:hover {
+ background-color: #48b78e;
+ }
+
  .sign-in-content {
 	box-sizing: border-box;
 	background-color: white;
@@ -297,7 +301,9 @@ html {
 	cursor: pointer;
 	border-radius: 5px;
  }
- 
+ .edit-button:hover {
+ background-color: #48b78e;
+ }
  .modify-button {
 	border-color: #00bc77;
 	background-color: #00bc77;
@@ -308,6 +314,11 @@ html {
 	margin-left: 5px;
 	margin-right: 5px;
 	border-radius: 5px;
+	cursor: pointer;
+ }
+
+ .modify-button:hover {
+	background-color: #48b78e;
  }
  
  .header {
@@ -328,7 +339,10 @@ html {
 	cursor: pointer;
 	border-radius: 5px;
  }
- 
+ .transaction-button:hover {
+ background-color: #48b78e;
+}
+
  @media (min-width: 720px) {
 	.account {
 	  flex-direction: row;
