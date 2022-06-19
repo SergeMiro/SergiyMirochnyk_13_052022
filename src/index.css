@@ -173,6 +173,7 @@ html {
 	background-color: #00bc77;
 	color: #fff;
 	cursor: pointer;
+	border-radius: 5px;
  }
  
  .sign-in-content {
@@ -190,7 +191,11 @@ html {
  .input-remember {
 	display: flex;
  }
- 
+
+ .input-remember input{
+	cursor: pointer;
+ }
+
  .input-remember label {
 	margin-left: 0.25rem;
  }
@@ -209,6 +214,7 @@ html {
  .input-wrapper input {
 	padding: 5px;
 	font-size: 1.2rem;
+	border-radius: 5px;
  }
  
  .form-changing-wrapper {
