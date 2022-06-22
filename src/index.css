@@ -379,3 +379,23 @@ html {
 	 margin: 0;
 	 padding: 5px 0 0 0;
  }
+
+
+
+ @media screen and (max-width: 610px) {
+	.form-changing-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: auto;
+		margin: 2px 0px;
+	 }
+	 .input-changing-wrapper {
+		width: 270px;
+		margin-top: 5px;
+	 }
+	 .input-changing-wrapper input {
+		width: 270px;
+		justify-content: center;
+	 }
+}
