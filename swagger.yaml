@@ -164,7 +164,7 @@ paths:
       tags:
         - Transaction
       summary: Transaction Details
-      description: See the month user transactions in details
+      description: See a transaction in details
       parameters:
         - in: header
           name: Authorization
@@ -180,7 +180,7 @@ paths:
         - application/json
       responses:
         "200":
-          description: User month details transactions retrieved successully
+          description: User details of transaction retrieved successully
           schema:
             $ref: "#/definitions/DetailsTransactionResponse"
 
